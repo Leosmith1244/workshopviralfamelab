@@ -983,3 +983,29 @@ form label {
         left: 15px;
     }
 }
+/* Example for speaker images */
+.speaker-image {
+    width: 200px; /* Set a specific width */
+    height: 200px; /* Set a specific height */
+    border-radius: 50%; /* Makes it circular */
+    overflow: hidden; /* Important for cropping */
+    border: 4px solid var(--yellow);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.speaker-image img {
+    width: 100%; /* Make the image fill its container's width */
+    height: 100%; /* Make the image fill its container's height */
+    object-fit: cover; /* This is the key for "cropping" */
+    /*
+        object-fit: cover; scales the image to fill the container,
+        maintaining its aspect ratio, and clips any excess.
+        This achieves a cropping effect.
+        
+        Other options:
+        - object-fit: contain; (scales down to fit, shows entire image, might leave empty space)
+        - object-fit: fill; (stretches/squashes to fill, might distort aspect ratio)
+        - object-fit: none; (displays intrinsic size, might overflow or be too small)
+        - object-fit: scale-down; (compares 'none' and 'contain' and uses smaller)
+    */
+}
