@@ -31,6 +31,7 @@
           margin: 0;
           padding: 0;
           background: var(--white);
+          scroll-behavior: smooth;
         }
 
         h1, h2, h3, h4 {
@@ -902,24 +903,39 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* Smooth scrolling for the jump */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Highlight the form when scrolled to */
+        .register-form:target {
+            animation: highlight 2s ease;
+        }
+        
+        @keyframes highlight {
+            0% { background-color: white; }
+            50% { background-color: rgba(242, 223, 116, 0.2); }
+            100% { background-color: white; }
+        }
     </style>
 </head>
 <body>
-   	
-	 <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav>
-        <div class="nav-container container">
+        <div class="nav-container">
             <a href="index.html" class="logo">PR Pros Toastmasters</a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="timeline.html">Agenda & Timeline</a>
+                <a href="timeline.html">Agenda Timeline</a>
                 <a href="speakers.html">Speaker Guides</a>
                 <a href="rhetoric.html">Rhetorical Triangle</a>
-                <a href="#register" class="btn btn-nav">Register Now</a>
+                <a href="#registration-form" class="btn btn-nav">Register Now</a>
             </div>
         </div>
     </nav>
-
+	
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -941,7 +957,8 @@
                 </div>
             </div>
             
-            <a href="#register" class="btn btn-hero">Secure Your Spot <i class="fas fa-arrow-right"></i></a>
+            <!-- Modified button to jump to registration form -->
+            <a href="#registration-form" class="btn btn-hero">Secure Your Spot <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
 
@@ -979,7 +996,7 @@
     <!-- Training Topics Section -->
     <section class="section section-dark">
         <div class="container">
-            <h2 class="section-title">Workshop Agenda Highlights</h2>
+            <h2 class="section-title">Workshop Topics</h2>
             <p class="section-subtitle">Master the art of creating contagious content</p>
             
             <div class="training-grid">
@@ -1039,8 +1056,8 @@
         </div>
     </section>
 
-    <!-- Register Section -->
-    <section class="section section-dark">
+    <!-- Register Section with ID for the jump target -->
+    <section id="registration-form" class="section section-dark">
         <div class="container">
             <h2 class="section-title">Ready to Go Viral?</h2>
             <p class="section-subtitle">Join us for this transformative workshop</p>
@@ -1128,7 +1145,7 @@
                 <a href="agenda.html">Workshop Agenda</a>
                 <a href="speakers.html">Speaker Guides</a>
                 <a href="rhetoric.html">Rhetorical Triangle</a>
-                <a href="#register">Register</a>
+                <a href="register.html">Register</a>
             </div>
             
             <div class="footer-social">
@@ -1180,6 +1197,16 @@
                     }
                 });
             });
+            
+            // Check if we need to scroll to the form (if URL has #registration-form hash)
+            if (window.location.hash === '#registration-form') {
+                const formSection = document.getElementById('registration-form');
+                if (formSection) {
+                    setTimeout(() => {
+                        formSection.scrollIntoView({behavior: 'smooth'});
+                    }, 100);
+                }
+            }
         });
     </script>
 </body>
